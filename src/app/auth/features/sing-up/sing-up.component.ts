@@ -1,5 +1,6 @@
 import { Component, inject } from '@angular/core';
 import {FormBuilder, FormControl, ReactiveFormsModule, Validators} from '@angular/forms'
+import { isRequired } from '../../utils/validators';
 
 interface FormSingUp{
   email: FormControl<string | null>;
@@ -14,6 +15,11 @@ interface FormSingUp{
 })
 export default class SingUpComponent {
   private _formBuilder =inject(FormBuilder);
+
+  isRequired(field: 'email' | 'password'){
+    return isRequired(field, this.form);
+
+  }
 
   form = this._formBuilder.group<FormSingUp>({
     email: this._formBuilder.control('', [Validators.required,Validators.email]),
