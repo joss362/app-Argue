@@ -1,6 +1,8 @@
 import { Component, inject } from '@angular/core';
 import {FormBuilder, FormControl, ReactiveFormsModule, Validators} from '@angular/forms'
-import { isRequired } from '../../utils/validators';
+import { hasEmailError, isRequired } from '../../utils/validators';
+import { AuthService } from '../../data-access/auth.service';
+import { toast } from 'ngx-sonner';
 
 interface FormSingUp{
   email: FormControl<string | null>;
@@ -15,10 +17,15 @@ interface FormSingUp{
 })
 export default class SingUpComponent {
   private _formBuilder =inject(FormBuilder);
+  private _authService =inject(AuthService);
 
   isRequired(field: 'email' | 'password'){
     return isRequired(field, this.form);
 
+  }
+
+  hasEmailError(){
+    return hasEmailError(this.form);
   }
 
   form = this._formBuilder.group<FormSingUp>({
@@ -26,14 +33,21 @@ export default class SingUpComponent {
     password:this._formBuilder.control('', Validators.required),
   })
 
-  submit(){
+  async submit(){
     if(this.form.invalid) return;
 
-    const {email,password}=this.form.value;
+    try {
+      const {email,password}=this.form.value;
 
     if(!email || !password) return;
 
-    console.log({email,password})
+  
+    this._authService.singUp({email, password });
+    toast.success('El usuario fue creado correctamente');
+      
+    } catch (error) {
+      toast.error('Lastimosamente ocurrio un error');
+    }
   }
 
 }

@@ -16,6 +16,10 @@
                         @if(isRequired('email')){
                             <small class="text-blue-700">Se requiere este campo</small>
                         }
+                        @if (hasEmailError()) {
+                            <small class="text-blue-700">Tu correo debe ser valido</small>
+
+                        }
                     </div>
                     <div>
                         <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">contraseña</label>
