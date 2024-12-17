@@ -45,8 +45,8 @@ export default class SingInComponent {
       if(!email || !password) return;
   
     
-      await this._authService.singUp({email, password });
-      toast.success('El usuario fue creado correctamente');
+      await this._authService.singIn({email, password });
+      toast.success('Secion iniciada correctamente');
       this._router.navigateByUrl('/task');  
       } catch (error) {
         toast.error('Lastimosamente ocurrio un error');
