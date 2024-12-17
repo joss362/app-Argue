@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { FormBuilder, FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { toast } from 'ngx-sonner';
 import { AuthService } from '../../data-access/auth.service';
 import { isRequired, hasEmailError } from '../../utils/validators';
@@ -13,7 +13,7 @@ export interface FormSingIn{
 @Component({
   selector: 'app-sing-in',
   standalone:true,
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, RouterLink],
   templateUrl: './sing-in.component.html',
   styles: ``
 })
