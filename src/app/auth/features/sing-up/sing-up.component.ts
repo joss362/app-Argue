@@ -3,7 +3,7 @@ import {FormBuilder, FormControl, ReactiveFormsModule, Validators} from '@angula
 import { hasEmailError, isRequired } from '../../utils/validators';
 import { AuthService } from '../../data-access/auth.service';
 import { toast } from 'ngx-sonner';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 
 interface FormSingUp{
   email: FormControl<string | null>;
@@ -12,7 +12,7 @@ interface FormSingUp{
 @Component({
   selector: 'app-sing-up',
   standalone:true,
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, RouterLink],
   templateUrl: './sing-up.component.html',
   styles: ``
 })
