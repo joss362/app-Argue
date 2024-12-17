@@ -3,6 +3,7 @@ import {FormBuilder, FormControl, ReactiveFormsModule, Validators} from '@angula
 import { hasEmailError, isRequired } from '../../utils/validators';
 import { AuthService } from '../../data-access/auth.service';
 import { toast } from 'ngx-sonner';
+import { Router } from '@angular/router';
 
 interface FormSingUp{
   email: FormControl<string | null>;
@@ -18,8 +19,9 @@ interface FormSingUp{
 export default class SingUpComponent {
   private _formBuilder =inject(FormBuilder);
   private _authService =inject(AuthService);
+  private _router= inject(Router);
 
-  isRequired(field: 'email' | 'password'){
+  isRequired(field: 'email' | 'password') {
     return isRequired(field, this.form);
 
   }
@@ -42,9 +44,9 @@ export default class SingUpComponent {
     if(!email || !password) return;
 
   
-    this._authService.singUp({email, password });
+    await this._authService.singUp({email, password });
     toast.success('El usuario fue creado correctamente');
-      
+    this._router.navigateByUrl('/task');  
     } catch (error) {
       toast.error('Lastimosamente ocurrio un error');
     }
