@@ -1,1 +1,17 @@
-{}
+{
+  "hosting": {
+    "site":"app-ar-f88a4",
+    "public": "public",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ]
+  }
+}
