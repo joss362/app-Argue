@@ -12,7 +12,7 @@ export const routes: Routes = [
     },
     {
         path:'**',
-        redirectTo: '/task',
+        redirectTo: '/Sing-in',
         
     }
     
